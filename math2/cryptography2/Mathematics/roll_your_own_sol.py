@@ -19,7 +19,9 @@ def json_send(hsh):
     pr.write(request)
 
 
-
+# we need to find two integers a and n such that n | a^q-1 and n does not divide a-1
+# we cannot compute a^q-1, therefore we need to think of two integers without computing anything
+# we can choose a=q+1 and n=q^2
 
 
 q = readline().split(b'"')
