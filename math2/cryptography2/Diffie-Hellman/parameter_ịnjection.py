@@ -82,9 +82,6 @@ q=readline().decode()
 s=take_dict(q)
 iv1=s['iv']
 encrypted_flag1=s['encrypted_flag']
-request={'iv':iv1,'encrypted_flag':encrypted_flag1}
-json_send(request)
-
-key=2
+key=1
 m=decrypt_flag(key,iv1,encrypted_flag1)
 print(m)
