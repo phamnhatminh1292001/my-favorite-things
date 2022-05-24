@@ -152,8 +152,6 @@ p=int(p,16)
 A=int(A,16)
 #use the algorithm to find a
 a=Po_He(g,A,p)
-print(a)
-print(a)
 key=pow(B,a,p)
 m=decrypt_flag(key,iv1,encrypted_flag1)
 print(m)
