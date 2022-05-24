@@ -61,23 +61,25 @@ def decrypt_flag(shared_secret: int, iv: str, ciphertext: str):
     else:
         return plaintext.decode('ascii')
 
-def Po_He_prime(gamma, q, d, p):
-    D = {1: 0}
-    m = int(p**.5)+1
-    # Baby-step
-    Z = 1
-    for i in range(m):
-        Z = Z * gamma % p
-        D[Z] = i+1
-    if d in D:
-        return D[d]
-    # Giant-step
-    R = pow(Z, p-2, p) # R = X^(-sq)
-    for i in range(1, m+1):
-        d = d * R % p
-        if d in D:
-            return D[d] + i*m
-    return -1
+def Po_He_prime(g,q,n,p):
+    N = 1 + int(math.sqrt(q))
+
+    #initialize baby_steps table
+    baby_steps = {}
+    baby_step = 1
+    for r in range(N+1):
+        baby_steps[baby_step] = r
+        baby_step = baby_step * g % p
+
+    #now take the giant steps
+    giant_stride = pow(g,(p-2)*N,p)
+    giant_step = n
+    for q in range(N+1):
+        if giant_step in baby_steps:
+            return q*N + baby_steps[giant_step]
+        else:
+            giant_step = giant_step * giant_stride % p
+    return "No Match"
 
 def Po_He_prime_power(g,q,e,n,p):
     gamma=pow(g,q**(e-1),p)
