@@ -94,7 +94,7 @@ def appendforCRT(k2):
                 list.append(j)
                 break
     return list
-
+# x=findk2(71) this will find the smallest possible k2
 # we found that k2=127
 x=127
 list2=appendforCRT(x)
