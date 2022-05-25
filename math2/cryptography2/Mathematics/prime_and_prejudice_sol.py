@@ -21,7 +21,7 @@ def generate_basis(n):
 #Initially, I intended to find an n with 2 prime number, but it was impossible since it could only
 #pass the Fermat test. There is no way we could find an n with 2 prime factors that could pass the
 #Miller Rabin test.
-#Therefore we should find a number with exacly 3 prime factors. A paper give a strategy to find a
+#Therefore we should find a number with exacly 3 prime factors. A paper of Arnault give a strategy to find a
 #Camichel number with exacly 3 prime factors that could bypass the test
 #It is believed that given a basis b, we can always find such an n, but it remains a conjecture.
 #if we can find such a number n, then take a prime divisor p and assign p=a
@@ -161,5 +161,7 @@ json_send(request)
 q=readline().decode()
 print(q)
 
+#Reference: Fran¸cois Arnault. Constructing Carmichael numbers which are strong pseudoprimes to several
+#bases. Journal of Symbolic Computation, 20(2):151–161, 1995.
 
 
