@@ -94,15 +94,15 @@ def appendforCRT(k2):
                 list.append(j)
                 break
     return list
-# x=findk2(71)
+
 # we found that k2=127
 x=127
 list2=appendforCRT(x)
 
 #we need 67p+1=0(mod 127) and 127p+1=0(mod 67) and p=5(mod 8)
-t1=127-pow(67,-1,127)             
-e1=127
-t2=67-pow(127,-1,67)
+t1=x-pow(67,-1,x)             
+e1=x
+t2=67-pow(x,-1,67)
 e2=67           
 t3=5
 e3=8
@@ -117,13 +117,13 @@ a=a+t*b
 #now just do the while loop until we found such a p
 boolean1=isprime(a)
 boolean2=isprime(67*a-66)
-boolean3=isprime(127*a-126)
+boolean3=isprime(x*a-x+1)
 while boolean1==False or boolean2==False or boolean3==False:
     a+=b
     boolean1=isprime(a)
     boolean2=isprime(67*a-66)
-    boolean3=isprime(127*a-126)
-n=a*(67*a-66)*(127*a-126)
+    boolean3=isprime(x*a-x+1)
+n=a*(67*a-66)*(x*a-x+1)
 
 #now victory is at hand
 
