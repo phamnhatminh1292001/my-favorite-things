@@ -136,13 +136,9 @@ s=take_dict(q)
 p=s['p']
 g=s['g']
 A=s['A']
-request={'p':p,'g':g,'A':A}
-json_send(request)
 q=readline().decode()
 s=take_dict(q)
 B=s['B']
-request={'B':B}
-json_send(request)
 q=readline().decode()
 s=take_dict(q)
 iv1=s['iv']
@@ -157,5 +153,3 @@ a=Po_He(g,A,p)
 key=pow(B,a,p)
 m=decrypt_flag(key,iv1,encrypted_flag1)
 print(m)
-
-
