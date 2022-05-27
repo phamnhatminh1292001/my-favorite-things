@@ -72,7 +72,7 @@ def Po_He(g,n,p):
     a=0
     for i in range(0,len(list)):
         a+=list2[i]*list3[i]%((p-1)//2)
-    return a
+    return a%((p-1)//2)
 
 
 def point_addition(P, Q):
