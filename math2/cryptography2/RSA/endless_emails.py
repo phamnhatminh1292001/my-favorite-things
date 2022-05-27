@@ -39,27 +39,14 @@ n7 = 198332036292830182270119251575091579670037363703201297648630768316172712903
 c7 = 15239683995712538665992887055453717247160229941400011601942125542239446512492703769284448009141905335544729440961349343533346436084176947090230267995060908954209742736573986319254695570265339469489948102562072983996668361864286444602534666284339466797477805372109723178841788198177337648499899079471221924276590042183382182326518312979109378616306364363630519677884849945606288881683625944365927809405420540525867173639222696027472336981838588256771671910217553150588878434061862840893045763456457939944572192848992333115479951110622066173007227047527992906364658618631373790704267650950755276227747600169403361509144
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #solution:
-#this is the case when we encrypt with the same N, therefore we can use CRT to break this RSA thing.
+#this is the case when we encrypt with the same e=3 and more than 3 people use this e to encrypt the same data
+# , therefore we can use CRT to break this RSA thing.
 #apparently we need to use CRT for 3 variables say n1,n2,n3 to find a c such that m^3=c (mod n1*n2*n3)
 #since m^3<n1*n2*n3, we conclude m^3=c, done
+#this is the exercise where we learn to break the RSA algorithm when the same e is used, therefore it is
+# guaranteed that the FLAG data is encrypted by at least e people
 # the trick is learned from: https://drx.home.blog/2019/03/01/crypto-rsa/    
-
-
-
-
 
 
 
@@ -74,23 +61,27 @@ for a in range(0,7):
         for c in range(b+1,7):
             combo.append((a,b,c))
 
+def CRT(list,list2):
+    product=1
+    list3=[]
+    for i in list:
+        product*=i
+    for i in range(0,len(list)):
+        c=product//list[i]
+        inv=pow(c,-1,list[i])
+        c=(c*inv)%product
+        list3+=[c]
+    CRT=0
+    for i in range(0,len(list)):
+        CRT+=(list3[i]*list2[i])%product
+    return (CRT%product,product)
 
 for i in combo:
-    product=list0[i[0]]*list0[i[1]]*list0[i[2]]
-    a1=product//list0[i[0]]
-    b1=pow(a1,-1,list0[i[0]])
-    a1=a1*b1
-    a2=product//list0[i[1]]
-    b2=pow(a2,-1,list0[i[1]])
-    a2=a2*b2
-    a3=product//list0[i[2]]
-    b3=pow(a3,-1,list0[i[2]])
-    a3=a3*b3
-    sum=a1*list1[i[0]]+a2*list1[i[1]]+a3*list1[i[2]]
-    sum=sum%product
+    arr1=[list0[i[0]]]+[list0[i[1]]]+[list0[i[2]]]
+    arr2=[list1[i[0]]]+[list1[i[1]]]+[list1[i[2]]]
+    sum=CRT(arr1,arr2)[0]
     sum=gmpy2.iroot(sum,3)[0]
     sum=long_to_bytes(sum)
-    print(sum)
-    print('---------------------------------------------------')
-
+    if b'crypto' in sum:
+        print(sum)
 
