@@ -27,7 +27,7 @@ for i in range(43,44):
     x2=pow(256,3*(100-x1),n)
     x3=pow(x2,-1,n)
     x4=(x3*c)%n
-    for j in range (1,64):
+    for j in range (1,256):
             x6=n*j+x4
             x5=gmpy2.iroot(x6,3)[0]
             x5=long_to_bytes(x5)
