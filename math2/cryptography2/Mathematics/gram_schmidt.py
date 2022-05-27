@@ -25,4 +25,3 @@ basis = np.array(
 
 ortho = gram_schmidt(basis)
 print(ortho)
-print("{0:.5f}".format(ortho[3][1]))
