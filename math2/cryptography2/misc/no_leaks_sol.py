@@ -71,6 +71,7 @@ for i in dict:
 decrypted=""
 for i in ordflag:
     decrypted+=chr(i)
+decrypted='crypto{'+decrypted+'}'
 print(decrypted)
 
 
