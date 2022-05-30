@@ -38,8 +38,10 @@ dict={}
 for i in range (7,19):
     dict[i]=[]
 
-
-
+#we will brute force
+#for each i from 7 to 18:
+#we will receive ciphertext until we found the character that DOES NOT appear in any ciphertexts at position i 
+#that is the character that is in the message at position i
 
 while True:
                 r = pwn.connect('socket.cryptohack.org', 13370)
