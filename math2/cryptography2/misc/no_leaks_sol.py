@@ -29,10 +29,10 @@ def json_send(hsh):
     request = json.dumps(hsh).encode()
     r.sendline(request)
 
+#it was stupid to ensure that no bytes from the flags are leaked.
 
 
-
-alphabet = '_'+string.digits+string.ascii_lowercase+string.ascii_uppercase
+alphabet = '_'+'@'+string.digits+string.ascii_lowercase+string.ascii_uppercase
 ordlist=[ord(x) for x in alphabet]
 l=len(ordlist)
 dict={}
