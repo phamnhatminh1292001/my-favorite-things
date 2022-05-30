@@ -32,7 +32,7 @@ def json_send(hsh):
 
 
 
-alphabet = '_'+'@'+string.digits+string.ascii_lowercase+string.ascii_uppercase
+alphabet = '_'+string.digits+string.ascii_lowercase+string.ascii_uppercase
 ordlist=[ord(x) for x in alphabet]
 l=len(ordlist)
 dict={}
