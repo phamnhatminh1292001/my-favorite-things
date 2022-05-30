@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import os
 from Crypto.Util.number import bytes_to_long, long_to_bytes
 from pkcs1 import emsa_pkcs1_v15
@@ -31,18 +30,15 @@ def json_send(hsh):
 #it was stupid to ensure that no bytes from the flags are leaked.
 
 
-alphabet = '_'+'@'+string.digits+string.ascii_lowercase+string.ascii_uppercase
+alphabet = '_'+string.digits+string.ascii_lowercase+string.ascii_uppercase
 ordlist=[ord(x) for x in alphabet]
 l=len(ordlist)
 dict={}
 for i in range (7,19):
     dict[i]=[]
 
-#we will brute force
-#for each i from 7 to 18:
-#we will receive ciphertext until we found the character that DOES NOT appear in any ciphertexts at position i 
-#that is the character that is in the message at position i
-#however, this can take up to 30 minutes, i don't know if there is a better way.
+
+
 
 while True:
                 r = pwn.connect('socket.cryptohack.org', 13370)
@@ -75,6 +71,4 @@ for i in ordflag:
     decrypted+=chr(i)
 decrypted='crypto{'+decrypted+'}'
 print(decrypted)
-
-
 
