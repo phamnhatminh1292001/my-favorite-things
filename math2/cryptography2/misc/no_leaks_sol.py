@@ -42,6 +42,7 @@ for i in range (7,19):
 #for each i from 7 to 18:
 #we will receive ciphertext until we found the character that DOES NOT appear in any ciphertexts at position i 
 #that is the character that is in the message at position i
+#however, this can take up to 30 minutes, i don't know if there is a better way.
 
 while True:
                 r = pwn.connect('socket.cryptohack.org', 13370)
