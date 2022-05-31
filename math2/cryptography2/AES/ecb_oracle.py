@@ -11,10 +11,7 @@ def encrypt(plaintext):
     return r.json()['ciphertext']
 alphabet = '}'+'_'+string.ascii_lowercase+string.ascii_uppercase+string.digits
 
-def print_blk(hex_blks, sz):
-   for i in range(0, len(hex_blks), sz):
-       print(hex_blks[i:i+sz], ' ', end='')
-   print()
+
 
 #how ECB works: divide into 16 bytes blocks
 #we can insert some string at the beginning of the flag
