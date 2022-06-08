@@ -37,30 +37,27 @@ m2='4dc968ff0ee35c209572d4777b721587d36fa7b21bdc56b74a3dc0783e7b9518afbfa202a828
 # modify m1 and m2 to receive a prime number and a composite number
 a=int(m1,16)
 b=int(m2,16)
-t=2**128
+t=2**512
 c=t*a
-a=t*a+1
-b=t*b+1
+a=t*a
+b=t*b
+r=61-b%61
+a=a+r
+b=b+r
 #we will insert a block behind a and b such that a is a prime and b is a composite
 #if the block is m bits behind a, then the number obtained has the following form:
 #2^m*a+r for some r<2^m, thus, fix an m, we will try r from 1 to 2^m to find a r such
-#that 2^m*a+r is a prime and 2^m*b+r is a composite, m is a multiple of 128 (since 1 byte=8 bit
-#and the length of a byte string is divisible by 16, thus m is divisible by 16*8=128)
-#we will try small a and b first because we want to factorize b, it is not good if
-#b is big
-c=t*a+2**128
+#that 2^m*a+r is a prime and 2^m*b+r is a composite, we let m=512 (since 1 byte=8 bit
+#and the length of a byte string is divisible by 64, thus m is divisible by 64*8=512)
+#we will also try those r so that 2^m*b+r is divisible by 61
+c=t*a+2**512
 while a<c:
     if (isPrime(a)) and (not isPrime(b)):
         break
-    if a%6==1:
-        a+=4
-        b+=4
-    else:
-        a+=2
-        b+=2
-#one factor of b
-#use factordb to obtain c
-c=6631140029601908490133118510209548000474184326629465829835060199270556279877111825662877532337461468379264783850607195857415101062007439555851252562345132207315279
+    a=a+61
+    b=b+61
+#since b is divisible by 61, we will choose 61 to force the server to reveal the flag
+c=61
 prime1=str(a)
 prime2=str(b)
 r=pwn.connect('socket.cryptohack.org',13392)
@@ -68,7 +65,6 @@ json_recv()
 request={'option':'sign','prime':prime1}
 json_send(request)
 line=json_recv()
-print(line)
 s=take_dict(line)
 sign=s['signature']
 request={'option':'check','prime':prime2,'signature':sign,'a':c}
