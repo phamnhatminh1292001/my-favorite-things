@@ -29,8 +29,8 @@ def json_send(hsh):
 m1='4dc968ff0ee35c209572d4777b721587d36fa7b21bdc56b74a3dc0783e7b9518afbfa200a8284bf36e8e4b55b35f427593d849676da0d1555d8360fb5f07fea2'
 m2='4dc968ff0ee35c209572d4777b721587d36fa7b21bdc56b74a3dc0783e7b9518afbfa202a8284bf36e8e4b55b35f427593d849676da0d1d55d8360fb5f07fea2'
 # how MD5 works: given a byte string m, it will be divided into 16 byte strings m[1],m[2],...m[k]
-# the output of MD5 is a string s=s[1]s[2]...s[k] and each character is obtained
-# recursively by having s[i+1]=f(s[i],m[i]) where f is a fixed function
+# the output of MD5 is given as follow, let s[1] be the initital state. Then the states s[2],...s[k]
+# is generated recursively by having s[i+1]=f(s[i],m[i]) where f is a fixed function. MD5 outputs s[k]
 # from above, we see that a fatal weakness of MD5 is that, given two byte strings having the same 
 # hash value, say m1 and m2,  we can insert any byte strings with length divisible by 16  
 # behind m1 and m2, and the two new strings still have the same hash value. We will use this to  
