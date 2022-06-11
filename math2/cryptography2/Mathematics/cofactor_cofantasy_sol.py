@@ -2,7 +2,7 @@ import math
 import pwn
 import json
 FLAG = b"crypto{???????????????????????????????????}"
-def check(r,NQRprime):
+def check(r,NQRprime,QRprime):
     for i in NQRprime:
         if r%i==0:
             return False
@@ -16,6 +16,9 @@ def check(r,NQRprime):
         for i in NQRprime:
             if pow(r,(i-1)//2,i) ==1:
                 return False
+    for i in QRprime:
+        if pow(r,(i-1)//2,i) !=1:
+            return False
         return True 
 
 
@@ -50,6 +53,10 @@ NQRprime=[]
 for i in factorN:
     if pow(g,(i-1)//2,i) !=1:
         NQRprime.append(i)
+QRprime=[]
+for i in factorN:
+    if pow(g,(i-1)//2,i) ==1:
+        QRprime.append(i)
 r=pwn.connect('socket.cryptohack.org',13398)
 line=json_recv()
 count=0
