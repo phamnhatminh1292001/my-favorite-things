@@ -10,8 +10,7 @@ def check(r,NQRprime,QRprime):
     if t1==1:
         for i in NQRprime:
             if pow(r,(i-1)//2,i) !=1:
-                return False
-        return True 
+                return False 
     else:
         for i in NQRprime:
             if pow(r,(i-1)//2,i) ==1:
@@ -19,7 +18,7 @@ def check(r,NQRprime,QRprime):
     for i in QRprime:
         if pow(r,(i-1)//2,i) !=1:
             return False
-        return True 
+    return True 
 
 
 def take_dict(s):
