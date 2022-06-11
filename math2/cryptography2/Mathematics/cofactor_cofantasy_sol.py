@@ -73,7 +73,7 @@ while count<8*len(FLAG):
         line=json_recv()
         s=take_dict(line)
         R=int(s['bit'],16)
-        m=check(R,NQRprime)
+        m=check(R,NQRprime,QRprime)
         if m==False:
             break
         rand+=1
