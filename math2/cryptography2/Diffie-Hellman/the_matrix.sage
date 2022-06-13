@@ -30,9 +30,7 @@ def load_matrix(fname):
 def save_matrix(M, fname):
     open(fname, 'w').write('\n'.join(''.join(str(x) for x in row) for row in M))
 
-matr = generate_mat()
 
-ciphertext = matr^E
 
 
 
