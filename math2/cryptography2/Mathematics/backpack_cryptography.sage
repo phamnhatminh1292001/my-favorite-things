@@ -7,6 +7,13 @@ Enc=4569075283329962627686056584893018330801694678637585980629434662274508251251
 #...
 #[0 0 1... 0 an]
 #[0 0 0... 0 -s]
+#however, that matrix does not give the desired result here, fortunately,we have another matrix that is worth trying
+#[1 0 0... 0 a1] 
+#[0 1 0... 0 a2]
+#[0 0 1... 0 a3]
+#...
+#[0 0 1... 0 an]
+#[0.5 0.5 0.5... 0.5 s]
 b=[]
 for i in range(0,len(Pub)):
     b+=[[0]*i+[1]+[0]*(len(Pub)-1-i)+[Pub[i]]]
