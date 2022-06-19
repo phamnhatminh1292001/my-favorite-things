@@ -41,6 +41,7 @@ g = 1048313788617929184066031858721029636723776757870702442884765201328671863670
 #we need to find when 2 and when 4, then we can get m[i]
 #look at the difference is that 2 is a prime and 4 is a square and the number 256, 
 #it is natural to consider QR, since we consider QR, we can see that g is a QR too
+#and 2 is a NQR
 #thus m[i]=1 iff (c2/q)=1
 for i in range(0,(q-1//8)):
     s=(2*pow(256,i,q)+1)%q
@@ -58,6 +59,7 @@ mlist2=[]
 for i in range(0,len(c2list)):
     if pow(c2list[i],(q-1)//2,q)==1:
         mlist[i+1]=1
+#now we have found all i such that m[i]=1 by looking at (c2/q), the rest is decrypt
 for i in range(0,len(mlist),8):
     mlist2.append(mlist[i:i+8])
 s=''
