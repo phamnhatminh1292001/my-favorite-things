@@ -4,6 +4,8 @@ from Crypto.Util.number import *
 from Crypto.Util.Padding import pad, unpad
 #the idea is to convert the matrix into Jordan normal form
 #fortunately, since it is the Jordan normal form, we can find the SECRET value without having to solve the DL problem
+
+#this part is done in sage
 #load P
 P = 13322168333598193507807385110954579994440518298037390249219367653433362879385570348589112466639563190026187881314341273227495066439490025867330585397455471
 N = 30
@@ -40,6 +42,7 @@ SECRET=(y0-y1*x0*pow(x1,-1,P))*g*pow(y1,-1,P)%P
 
 print(SECRET)
 
+#this part is done in python
 KEY_LENGTH = 128
 KEY = SHA256.new(data=str(SECRET).encode()).digest()[:KEY_LENGTH]
 
@@ -48,3 +51,5 @@ cipher = AES.new(KEY, AES.MODE_CBC, iv)
 ciphertext =bytes.fromhex("543e29415bdb1f694a705b2532a5beb7ebd7009591503ef3c4fbcebf9e62fe91307e5d98efcd49f9f3b1985956cafc89") 
 plaintext = cipher.decrypt(ciphertext)
 print(plaintext)
+
+#reference https://crypto.stackexchange.com/questions/3840/a-discrete-log-like-problem-with-matrices-given-ak-x-find-k
