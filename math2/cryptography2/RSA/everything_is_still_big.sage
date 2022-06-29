@@ -18,6 +18,7 @@ for i in range(0,l):
         M[i,j]=plist[i].monomial_coefficient(mono[j])*value[j]
 Z=M.LLL()
 #fortunately, we have found 2 polynomials with new0(k,s)=new1(k,s)=0
+#thus we just need to solve an equation system
 new0=P(0)
 for i in range(0,l):
     new0+=Z[0][i]//value[i]*mono[i]
@@ -26,6 +27,12 @@ new1=P(0)
 for i in range(0,l):
     new1+=Z[1][i]//value[i]*mono[i]
 
+
+#but the problem is that i don't know the syntax and actually i found one but it couldn't solve the equation
+#but the only way to solve new(x0,y0)=0 is to find another new1 such that new1(x0,y0)=0, since there is no way
+#we can solve an equation with two variables.
+#i decided to look at https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/boneh_durfee.sage to see how he solves
+# new0(x,y)=0 and he also found 2 polynomials and solve the system equation too. The following is the script to solve
 #this will help us find s=(p+q)//2, from now on i will use this to find multivariate polynomial equation system
 b=new1.resultant(new0)
 PR.<q> = PolynomialRing(ZZ)
