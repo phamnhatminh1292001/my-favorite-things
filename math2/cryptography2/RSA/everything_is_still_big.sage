@@ -1,4 +1,4 @@
-#everything thanks to this paper http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.40.2636&rep=rep1&type=pdf
+#everything thanks to this paper https://link.springer.com/content/pdf/10.1007/3-540-48910-X_1.pdf
 #i understand what boneh durfee does now, had to admit they picked a very beaufitul lattice matrix
 #now just have to implement the algorithm
 
@@ -48,5 +48,6 @@ s=b.roots()[0][0]
 u=q^2+2*q*s+N
 p=u.roots()[0][0]
 q=u.roots()[1][0]
-print(q)
-print(p)
+#found p and q, the rest is just decrypt
+phi=(p-1)*(q-1)
+d=pow(e,-1,phi)
