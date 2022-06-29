@@ -1,6 +1,9 @@
 from __future__ import print_function
 import time
 
+#this is an attack that is far stronger than weiner, but it is quite complicated
+#therefore i can't implement it myself and decided to find one on github
+
 ############################################
 # Config
 ##########################################
