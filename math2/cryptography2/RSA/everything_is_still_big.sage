@@ -3,6 +3,7 @@ import time
 
 #this is an attack that is far stronger than weiner, but it is quite complicated
 #therefore i can't implement it myself and decided to find one on github
+#information about this attack is found here: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.40.2636&rep=rep1&type=pdf
 
 ############################################
 # Config
@@ -339,5 +340,6 @@ def example():
     if debug:
         print(("=== %s seconds ===" % (time.time() - start_time)))
 
+#when d is found, the rest is take m=c^d (mod N) and debug
 if __name__ == "__main__":
     example()
