@@ -23,7 +23,11 @@ f=-1+x*(A+y)
 #but i will choose m=5 in order to ensure the determinant of the matrix is less than e^5 to make
 #a good example
 m=5
-t=int(m/2*(1-2*0.257))
+# it is recommended that t=int(m/2*(1-2*0.257)) for larger m to get the right result, but our m is small
+#(m=4 or m=5) and t is close to 1 anyway therefore letting t=1 is enough, if m is big then we should change
+#like the above fomula
+t=1
+
 #the list of polynomials that are used in the combination
 plist=[]
 for i in range (0,m+1):
