@@ -12,14 +12,38 @@ X=int(e^0.26)
 Y=int(e^0.50048)
 P.<x,y> = PolynomialRing(ZZ)
 f=-1+x*(A+y)
-plist=[P(e^3),e^3*x,e^2*f,x^2*e^3,x*e^2*f,e*f^2,x^3*e^3,x^2*f*e^2,x*f^2*e,f^3,y*e^3,y*f*e^2,y*f^2*e,y*f^3]
-mono=[P(1),x,x*y,x^2,x^2*y,x^2*y^2,x^3,x^3*y,x^3*y^2,x^3*y^3,y,x*y^2,x^2*y^3,x^3*y^4]
-value=[1,X,X*Y,X^2,X^2*Y,X^2*Y^2,X^3,X^3*Y,X^3*Y^2,X^3*Y^3,Y,X*Y^2,X^2*Y^3,X^3*Y^4]
+m=4
+
+plist=[]
+for i in range (0,m+1):
+    for j in  range (0,i+1):
+        plist.append(x^(i-j)*e^(m-j)*f^j)
+for j in  range (0,m+1):
+        plist.append(y*e^(m-j)*f^j)
+
+mono=[]
+for i in range (0,m+1):
+    for j in  range (0,i+1):
+        mono.append(x^i*y^j)
+for j in  range (0,m+1):
+        mono.append(x^j*y^(j+1))
+
+
+value=[]
+for i in range (0,m+1):
+    for j in  range (0,i+1):
+        value.append(X^i*Y^j)
+for j in  range (0,m+1):
+        value.append(X^j*Y^(j+1))
+
+
 l=len(plist)
 M=Matrix(ZZ,l,l)
 for i in range(0,l):
     for j in range(0,l):
         M[i,j]=plist[i].monomial_coefficient(mono[j])*value[j]
+        
+
 Z=M.LLL()
 #fortunately, we have found 2 polynomials with new0(k,s)=new1(k,s)=0
 #thus we just need to solve an equation system
@@ -31,13 +55,12 @@ new1=P(0)
 for i in range(0,l):
     new1+=Z[1][i]//value[i]*mono[i]
 
-
-#but the problem is that i don't know the syntax and actually i found one but it couldn't solve the equation
-#but the only way to solve new(x0,y0)=0 is to find another new1 such that new1(x0,y0)=0, since there is no way
-#we can solve an equation with two variables.
-#i decided to look at https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/boneh_durfee.sage to see how he solves
-# new0(x,y)=0 and he also found 2 polynomials and solve the system equation too. The following is the script to solve
-#this will help us find s=(p+q)//2, from now on i will use this to find multivariate polynomial equation system
+#for 2 polynomials P(x,y) and Q(x,y) resultant will give a polynomial H(x,y)=F(x,y)P(x,y)+G(x,y)Q(x,y)
+#such that the degree of x in H is lowest possible, this process is like this:
+#Let P(x,y)=P0(y)+x*P1(y)+x^2*P2(y)+... and Q(x,y)=Q0(y)+x*Q1(y)+x^2*Q2(y)+... now we can see both of 
+#them as polynomials in x with coefficients in y. Similarly, use Euclidean algorithm to make the
+#degree of x in each polynomials lower and finally finding a polynomial H(x,y)=H0(y)+x*H1(y)+x^2*H1(y)+...
+#with the degree of x in H is lowest possible.
 b=new1.resultant(new0)
 PR.<q> = PolynomialRing(ZZ)
 b=b(q,q)
@@ -50,4 +73,5 @@ p=u.roots()[0][0]
 q=u.roots()[1][0]
 #found p and q, the rest is just decrypt
 phi=(p-1)*(q-1)
+
 d=pow(e,-1,phi)
