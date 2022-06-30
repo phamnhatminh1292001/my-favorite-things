@@ -8,14 +8,14 @@ N=0x665166804cd78e8197073f65f58bca14e019982245fcc7cad74535e948a4e0258b2e919bf372
 
 
 A=(N+1)//2
-X=int(e^0.26)
+X=int(e^0.255)
 Y=int(e^0.50048)
 P.<x,y> = PolynomialRing(ZZ)
 f=-1+x*(A+y)
 
 #we will construct 2 polynomials new0(x,y) and new1(x,y) such that new0(x,y)=new1(x,y)=0 (mod e^4)
 #and their absolute values are less than e^4. 4 can be replaced by any m.
-m=4
+m=5
 
 #the list of polynomials that are used in the combination
 plist=[]
@@ -80,3 +80,4 @@ q=u.roots()[1][0]
 phi=(p-1)*(q-1)
 
 d=pow(e,-1,phi)
+print(d)
