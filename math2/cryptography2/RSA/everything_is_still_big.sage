@@ -12,8 +12,12 @@ X=int(e^0.26)
 Y=int(e^0.50048)
 P.<x,y> = PolynomialRing(ZZ)
 f=-1+x*(A+y)
+
+#we will construct 2 polynomials new0(x,y) and new1(x,y) such that new0(x,y)=new1(x,y)=0 (mod e^4)
+#and their absolute values are less than e^4. 4 can be replaced by any m.
 m=4
 
+#the list of polynomials that are used in the combination
 plist=[]
 for i in range (0,m+1):
     for j in  range (0,i+1):
@@ -21,6 +25,7 @@ for i in range (0,m+1):
 for j in  range (0,m+1):
         plist.append(y*e^(m-j)*f^j)
 
+#the list of monomials
 mono=[]
 for i in range (0,m+1):
     for j in  range (0,i+1):
@@ -28,7 +33,7 @@ for i in range (0,m+1):
 for j in  range (0,m+1):
         mono.append(x^j*y^(j+1))
 
-
+#the value of the monomials in the mono list above with x=X and y=Y
 value=[]
 for i in range (0,m+1):
     for j in  range (0,i+1):
@@ -36,7 +41,7 @@ for i in range (0,m+1):
 for j in  range (0,m+1):
         value.append(X^j*Y^(j+1))
 
-
+#now create the matrix that will be used for LLL
 l=len(plist)
 M=Matrix(ZZ,l,l)
 for i in range(0,l):
