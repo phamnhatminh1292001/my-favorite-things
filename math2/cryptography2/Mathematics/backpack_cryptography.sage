@@ -35,3 +35,4 @@ for i in range(0,len(f)):
 s=bytes.fromhex(hex(int(s,2))[2:])
 print(s)
 
+#reference: https://drx.home.blog/2019/02/24/crypto-he-ma-merkle-hellman/
