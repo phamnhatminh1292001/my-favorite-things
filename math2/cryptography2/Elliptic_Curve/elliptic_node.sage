@@ -9,6 +9,8 @@ p=4368590184733545720227961182704359358435747188309319510520316493183539079703
 a=(y1**2-gy**2-x1**3+gx**3)*pow(x1-gx,-1,p)%p
 b=(y1**2-x1**3-a*x1)%p
 
+# the problem is if we use singluar curve, then there is an isomorphism from E
+# to Fp or Fp^2. Suppose E: y^2=(x-a)*(x-b)^2
 P.<x> = PolynomialRing(GF(p))
 g=x^3+a*x+b
 
