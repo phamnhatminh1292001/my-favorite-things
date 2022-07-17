@@ -7,7 +7,7 @@ from Crypto.Util.Padding import pad, unpad
 
 
 
-
+#MOV attack
 p = 1331169830894825846283645180581
 a = -35
 b = 98
