@@ -5,6 +5,8 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
 #this part is done in Sage
+#since the order has A LOT of small factor, we can select some of them so that their product is bigger than 2^64
+#and solve the DLP. Next is to use CRT, since the secret keys is less than 2^64, we can use CRT to solve.
 
 a=1
 b=4
