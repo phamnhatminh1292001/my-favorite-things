@@ -15,8 +15,9 @@ E = EllipticCurve(GF(p), [a,b])
 G=E(479691812266187139164535778017,568535594075310466177352868412)
 A=E(1110072782478160369250829345256,800079550745409318906383650948)
 B=E(1290982289093010194550717223760,762857612860564354370535420319)
-n=E.order()
 k=2
+n=G.order()
+
 #now consider the Field GF(p^k)
 K.<a> = GF(p^k)
 #extend from E(GF(p)) to E(GF(p^k))
@@ -26,7 +27,8 @@ GK = EK(G)
 #generate a random point
 Qk = EK.random_point()
 m = Qk.order()
-d = gcd(m, G.order())
+d = gcd(m,n)
+#multiply Qk by m/gcd(m,n) so that Qk is a n-torsion point
 Qk = (m//d)*Qk
 #weil's pairing
 AA = AK.weil_pairing(Qk, n)
