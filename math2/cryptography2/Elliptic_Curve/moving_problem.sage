@@ -8,6 +8,7 @@ from Crypto.Util.Padding import pad, unpad
 
 
 #MOV attack
+#used when the embeeding degree is low
 p = 1331169830894825846283645180581
 a = -35
 b = 98
@@ -30,11 +31,12 @@ m = Qk.order()
 d = gcd(m,n)
 #multiply Qk by m/gcd(m,n) so that Qk is a n-torsion point
 Qk = (m//d)*Qk
-#weil's pairing
+#weil's pairing, it is a bilinear map 
 AA = AK.weil_pairing(Qk, n)
 GG = GK.weil_pairing(Qk, n)
 print(AA)
 print(GG)
+#we need to solve e(G,Q)^a=e(G,A)
 u=discrete_log(AA,GG)
 print(u)
 S=B*u
