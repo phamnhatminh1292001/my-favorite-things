@@ -66,4 +66,3 @@ for i in range(0, len(charlist)):
 print(t)
 
 t = '155555559999AAAAAAEEEEEEEEEEEEEEIIIIIIIIIIIIIIMMMMQQQQQQUUUUUUUUUUUUUUUUUUUUUUUYYYYYYYYYYYYYYYaaaaaaaaaaaeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiimmmmmmmmmmmmmmmmqqqqqqqqqqqqqqqqqqquuuuuuuuuuuuyyyyyyyyyyyyyyyyyyyyyyyyyy'
-r = pwn.connect('socket.cryptohack.org',)
