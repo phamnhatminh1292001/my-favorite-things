@@ -44,14 +44,6 @@ class LCG:
         return bytes_sequence, v2
 
 
-def Babai_closest_vector(M, G, target):
-    small = target
-    for _ in range(1):
-        for i in reversed(range(M.nrows())):
-            c = ((small * G[i]) / (G[i] * G[i])).round()
-            small -= M[i] * c
-    return target - small
-
 
 a = 0x1337deadbeef
 b = 0xb
